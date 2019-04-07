@@ -27,14 +27,16 @@ interface Props {
   value: string;
   label?: string;
   placeholder?: string;
+  type?: string;
   onChange: Dispatch<SetStateAction<any>>;
 }
 
-export const Input:FunctionComponent<Props> = ({ value = '', placeholder = '', onChange, label = '' }) => {
+export const Input:FunctionComponent<Props> = ({ value = '', placeholder = '', onChange, label = '', type = 'text' }) => {
   return (
     <FieldContainer>
       <Label>{label}</Label>
       <StyledInput
+        type={type}
         value={value}
         onChange={onChange}
         placeholder={placeholder}

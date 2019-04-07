@@ -12,6 +12,7 @@ import WebFont from 'webfontloader';
 import Login_Signup from '../authentication/login_signup';
 import { Routes } from './types';
 import theme from './theme';
+import Navigation from './navigation';
 
 WebFont.load({
   google: {
@@ -48,6 +49,7 @@ const App: FunctionComponent<Props> = ():JSX.Element => {
       <React.Fragment>
         <GlobalStyle />
         <Router>
+          <Navigation />
           <Route path={[Routes.login, Routes.signup]} component={Login_Signup} />
         </Router>
       </React.Fragment>

@@ -25,7 +25,6 @@ export class BaseApi {
   };
 
   public post = <T>(path: string, additionalOptions?: GlobalFetch): Promise<T> => {
-    console.log(`${this.baseUrl}/${path}`);
     return this.baseRequest(path, {
       ...additionalOptions,
       method: "POST"

@@ -2,8 +2,10 @@ import
   React, {
   BaseSyntheticEvent,
   FunctionComponent,
+  useContext,
   useState
 } from 'react';
+import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router-dom';
 import {
   Form,
@@ -15,27 +17,41 @@ import {
   Container,
   GitHubButton
 } from './styles';
-
 import { ReactComponent as GitHubLogo } from '../../../assets/github-logo.svg';
 import { Header } from '../../shared/typography';
 import { formText } from './constants';
+import { Context } from'../../app';
 
 interface Props extends RouteComponentProps {}
 
-const Login_Signup: FunctionComponent<Props> = (props) => {
+const Login_Signup: FunctionComponent<Props> = observer( (props) => {
+  const { userStore } = useContext(Context);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const constants = formText[props.match.url];
 
-  const handleSubmit = (event: BaseSyntheticEvent) => {
+  const handleSocialLogin = async(event: BaseSyntheticEvent) => {
+    try {
+      const response = await userStore.loginSocial();
+    } catch(e) {
+      // still need to implement error handling
+    }
+  };
+
+  const handleSubmit = async(event: BaseSyntheticEvent) => {
     event.preventDefault();
+    try {
+      const response = await userStore.loginUser();
+    } catch(e) {
+      // still need to implement error handling
+    }
   };
 
   return(
     <Container>
       <Form onSubmit={handleSubmit}>
         <Header>{constants.header}</Header>
-        <GitHubButton type="button">
+        <GitHubButton onClick={handleSocialLogin} type="button">
           <GitHubLogo />
           <span>{constants.socialText}</span>
         </GitHubButton>
@@ -55,6 +71,6 @@ const Login_Signup: FunctionComponent<Props> = (props) => {
       </Form>
     </Container>
   );
-};
+});
 
 export default Login_Signup;

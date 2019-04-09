@@ -31,7 +31,14 @@ interface Props {
   onChange: Dispatch<SetStateAction<any>>;
 }
 
-export const Input:FunctionComponent<Props> = ({ value = '', placeholder = '', onChange, label = '', type = 'text' }) => {
+export const Input:FunctionComponent<Props> =
+  ({
+     value = '',
+     placeholder = '',
+     onChange,
+     label = '',
+     type = 'text'
+  }) => {
   return (
     <FieldContainer>
       <Label>{label}</Label>

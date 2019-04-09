@@ -21,7 +21,7 @@ interface Props extends FormHTMLAttributes<any> {}
 export const Form: FunctionComponent<Props> = ({ children, ...rest}):JSX.Element => {
   return(
     <StyledForm {...rest}>
-      { children }
+      {children}
     </StyledForm>
   );
 };

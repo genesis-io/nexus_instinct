@@ -17,35 +17,35 @@ export class BaseApi {
       .then(response => response.json());
   };
 
-  public get = <T>(path: string, additionalOptions?: GlobalFetch): Promise<T> => {
+  public get = <T>(path: string, additionalOptions?: RequestInit): Promise<T> => {
     return this.baseRequest(path, {
       ...additionalOptions,
       method: "GET"
     })
   };
 
-  public post = <T>(path: string, additionalOptions?: GlobalFetch): Promise<T> => {
+  public post = <T>(path: string, additionalOptions?: RequestInit): Promise<T> => {
     return this.baseRequest(path, {
       ...additionalOptions,
       method: "POST"
     });
   };
 
-  public delete = <T>(path: string, additionalOptions?: GlobalFetch): Promise<T> => {
+  public delete = <T>(path: string, additionalOptions?: RequestInit): Promise<T> => {
     return this.baseRequest(path, {
       ...additionalOptions,
       method: "DELETE"
     })
   };
 
-  public put = <T>(path: string, additionalOptions?: GlobalFetch): Promise<T> => {
+  public put = <T>(path: string, additionalOptions?: RequestInit): Promise<T> => {
     return this.baseRequest(path, {
       ...additionalOptions,
       method: "PUT"
     })
   };
 
-  public patch = <T>(path: string, additionalOptions?: GlobalFetch): Promise<T> => {
+  public patch = <T>(path: string, additionalOptions?: RequestInit): Promise<T> => {
     return this.baseRequest(path, {
       ...additionalOptions,
       method: "PATCH"

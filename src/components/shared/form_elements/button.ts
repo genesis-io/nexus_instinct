@@ -15,6 +15,11 @@ export const PrimaryButton = styled(Button)`
   background-color: ${props => props.theme.colors.primary};
 `;
 
+export const SecondaryButton = styled(Button)`
+  color: ${props => props.theme.colors.off_white};
+  background-color: ${props => props.theme.colors.secondary};
+`;
+
 export const CancelButton = styled(Button)`
   color: ${props => props.theme.colors.secondary};
   background-color: ${props => props.theme.colors.off_white};

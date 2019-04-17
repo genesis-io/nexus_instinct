@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const Header = styled.h1`
+export const SectionText = styled.p`
   text-align: center;
-  font-size: ${props => props.theme.typography.mainHeader};
+  font-size: ${props => props.theme.typography.sectionText};
   color: ${props => props.color || props.theme.colors.black};
   
   @media ${props => props.theme.devices.laptop} {
-    font-size: 45px;
+    font-size: 21px;
   }
 `;

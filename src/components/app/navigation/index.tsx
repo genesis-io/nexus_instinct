@@ -1,19 +1,52 @@
-import React from 'react';
+import
+  React, {
+  FunctionComponent
+} from 'react';
+import {
+  RouteComponentProps,
+  withRouter
+} from 'react-router';
 import {
   StyledNavigation,
-  StyledHeader
+  StyledHeader,
+  SignIn,
+  NavRight
 } from './styles';
-import { UnstyledLink } from '../../shared/typography/unstyled_link';
-import { appName } from '../../shared/constants';
+import {
+  UnstyledLink,
+  PrimaryLink
+} from '../../shared/typography';
+import theme from '../theme';
+import {
+  Routes,
+  signIn,
+  title
+} from '../constants';
+import {
+  BackgroundColorProperty,
+  Color
+} from 'csstype';
 
-const Navigation = () => {
+interface Props extends RouteComponentProps {}
+
+const Navigation: FunctionComponent<Props> = (props) => {
+  const isHomeUrl = props.location.pathname === Routes.Home;
+  const getColor = (): Color => (isHomeUrl && theme.colors.white) || theme.colors.black;
+  const getBackgroundColor = (): BackgroundColorProperty =>
+    (isHomeUrl && theme.colors.transparent) || theme.colors.white;
+
   return(
-    <StyledNavigation>
-      <UnstyledLink to="/">
-        <StyledHeader>{appName}</StyledHeader>
+    <StyledNavigation backgroundColor={getBackgroundColor()}>
+      <UnstyledLink to={Routes.Home}>
+        <StyledHeader color={getColor()}>{title}</StyledHeader>
       </UnstyledLink>
+      <NavRight>
+        <PrimaryLink to={Routes.Login}>
+          <SignIn>{signIn}</SignIn>
+        </PrimaryLink>
+      </NavRight>
     </StyledNavigation>
   )
 };
 
-export default Navigation;
+export default withRouter(Navigation);

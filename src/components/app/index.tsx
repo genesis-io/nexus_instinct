@@ -1,4 +1,5 @@
-import React, {
+import
+  React, {
   FunctionComponent,
   createContext
 } from 'react';
@@ -13,11 +14,13 @@ import {
 import WebFont from 'webfontloader';
 import DevTools from 'mobx-react-devtools';
 
-import { Routes } from './types';
+import { Routes } from './constants';
 import theme from './theme';
 import { RootStore } from '../../store/root_store';
 import Navigation from './navigation';
 import Login_Signup from '../authentication/login_signup';
+import Landing from './landing';
+import { Body } from './styles';
 
 WebFont.load({
   google: {
@@ -60,11 +63,18 @@ const App: FunctionComponent<Props> = ():JSX.Element => {
           <DevTools />
           <GlobalStyle />
           <Router>
-            <Navigation />
-            <Route
-              path={[Routes.login, Routes.signup]}
-              component={Login_Signup}
-            />
+            <Body>
+              <Navigation />
+              <Route
+                exact={true}
+                path={[Routes.Home]}
+                component={Landing}
+              />
+              <Route
+                path={[Routes.Login, Routes.Signup]}
+                component={Login_Signup}
+              />
+            </Body>
           </Router>
         </React.Fragment>
       </ThemeProvider>

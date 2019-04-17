@@ -3,9 +3,11 @@ import { Button } from '../../shared/form_elements';
 
 export const Container = styled.div`
   margin-top: 60px;
+  width: 100%;
   @media ${props => props.theme.devices.tablet} {
     width: 440px;
-    margin: 80px auto;
+    margin: auto;
+    padding-bottom: 100px;
   }
 `;
 

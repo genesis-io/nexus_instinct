@@ -3,7 +3,6 @@ import
   BaseSyntheticEvent,
   FunctionComponent,
   useContext,
-  useState
 } from 'react';
 import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router-dom';
@@ -21,13 +20,20 @@ import { ReactComponent as GitHubLogo } from '../../../assets/github-logo.svg';
 import { Header } from '../../shared/typography';
 import { formText } from './constants';
 import { Context } from'../../app';
+import { useInput } from '../../shared/utils/use_input';
 
 interface Props extends RouteComponentProps {}
 
 const Login_Signup: FunctionComponent<Props> = observer( (props) => {
   const { userStore } = useContext(Context);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    value: password,
+    onChange: handlePasswordChange
+  } = useInput('');
+  const {
+    value: email,
+    onChange: handleEmailChange
+  } = useInput('');
   const constants = formText[props.match.url];
 
   const handleSocialLogin = async(event: BaseSyntheticEvent) => {
@@ -59,13 +65,13 @@ const Login_Signup: FunctionComponent<Props> = observer( (props) => {
         <Input
           value={email}
           label="email"
-          onChange={(event: BaseSyntheticEvent) => setEmail(event.target.value)}
+          onChange={handleEmailChange}
         />
         <Input
           type="password"
           value={password}
           label="password"
-          onChange={(event: BaseSyntheticEvent) => setPassword(event.target.value)}
+          onChange={handlePasswordChange}
         />
         <PrimaryButton type="submit">{constants.buttonText}</PrimaryButton>
       </Form>

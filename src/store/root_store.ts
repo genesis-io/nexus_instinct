@@ -10,6 +10,6 @@ export class RootStore {
 
   constructor() {
     this.uiStore = new UiStore(this);
-    this.userStore = new UserStore(new UserApi());
+    this.userStore = new UserStore(new UserApi(), this);
   }
 }

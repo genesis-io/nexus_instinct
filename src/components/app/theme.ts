@@ -8,14 +8,17 @@ export default {
     black: '#333',
     lightGrey: '#e7e7e7',
     danger_red: '#9f1f1f',
-    white: '#fff'
+    white: '#fff',
+    transparent: 'transparent'
   },
   typography: {
     mainHeader: '32px',
     sectionHeader: '24px',
+    sectionText: '16px',
     inputText: '16px',
     normalText: '14px',
-    smallText: '12px'
+    smallText: '12px',
+    borderRadius: '20px'
   },
   form_elements: {
     height: '50px',

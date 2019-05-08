@@ -3,10 +3,10 @@ import
   FunctionComponent
 } from 'react';
 import {
-  Container,
   Content,
   OpaqueText,
-  ResponsiveSvg
+  ResponsiveSvg,
+  InfoContainer
 } from './styles';
 import {
   Header,
@@ -24,19 +24,18 @@ import { SecondaryButton } from '../../shared/form_elements';
 
 interface Props {}
 
-const Landing: FunctionComponent<Props> = () => {
-
+export const Landing: FunctionComponent<Props> = () => {
   return(
-   <Container>
-     <Content>
+   <Content>
+     <InfoContainer>
        <Header color={theme.colors.white}>{header}</Header>
        <OpaqueText color={theme.colors.white}>{description}</OpaqueText>
        <UnstyledLink to={Routes.Signup}>
         <SecondaryButton>{createAccount}</SecondaryButton>
        </UnstyledLink>
-       <ResponsiveSvg />
-     </Content>
-   </Container>
+     </InfoContainer>
+     <ResponsiveSvg />
+   </Content>
   );
 };
 

@@ -24,6 +24,8 @@ export const StyledNavigation = styled.nav`
   justify-content: space-between;
 `;
 
+StyledNavigation.displayName = 'StyledNavigation';
+
 interface HeaderProps {
   color: Color;
 }

@@ -1,17 +1,10 @@
 import styled from 'styled-components';
 import {
   Header,
-  SectionText
+  SectionText,
 } from '../../shared/typography';
 import { ReactComponent as MacBookSvg } from '../../../assets/macbook.svg';
 import { SecondaryButton } from '../../shared/form_elements';
-
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  position: relative;
-`;
 
 export const Content = styled.div`
   background-color: ${props => props.theme.colors.primary}
@@ -44,11 +37,27 @@ export const OpaqueText = styled(SectionText)`
 `;
 
 export const ResponsiveSvg = styled(MacBookSvg)`
-  width: 600px;
-  height: 600px;
+  width: 350px;
+  max-height: 200px;
+  
+  @media ${props => props.theme.devices.tablet} {
+    width: 425px;
+    max-height: 350px;
+  }
   
   @media ${props => props.theme.devices.laptop} {
-    width: 850px;
-    height: 850px;
+    width: 525px;
+    max-height: 450px;
+  }
+`;
+
+export const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  
+  ${SecondaryButton} {
+    width: auto;
   }
 `;

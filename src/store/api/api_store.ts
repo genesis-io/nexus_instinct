@@ -1,4 +1,4 @@
-import config from '../config';
+import config from '../../config';
 
 export class BaseApi {
   private baseUrl = `${config.protocol}://${config.host}:${config.port}`;
@@ -14,7 +14,8 @@ export class BaseApi {
       ...this.baseOptions,
       ...additionalOptions
     })
-      .then(response => response.json());
+      .then(response => response.json())
+    // TODO: figure out what messages i want to display here instead of console log
   };
 
   public get = <T>(path: string, additionalOptions?: RequestInit): Promise<T> => {
@@ -24,9 +25,10 @@ export class BaseApi {
     })
   };
 
-  public post = <T>(path: string, additionalOptions?: RequestInit): Promise<T> => {
+  public post = <T>(path: string, body: any, additionalOptions?: RequestInit): Promise<T> => {
     return this.baseRequest(path, {
       ...additionalOptions,
+      body: JSON.stringify(body),
       method: "POST"
     });
   };
@@ -38,16 +40,18 @@ export class BaseApi {
     })
   };
 
-  public put = <T>(path: string, additionalOptions?: RequestInit): Promise<T> => {
+  public put = <T>(path: string,  body: any, additionalOptions?: RequestInit): Promise<T> => {
     return this.baseRequest(path, {
       ...additionalOptions,
+      body: JSON.stringify(body),
       method: "PUT"
     })
   };
 
-  public patch = <T>(path: string, additionalOptions?: RequestInit): Promise<T> => {
+  public patch = <T>(path: string,  body: any, additionalOptions?: RequestInit): Promise<T> => {
     return this.baseRequest(path, {
       ...additionalOptions,
+      body: JSON.stringify(body),
       method: "PATCH"
     })
   };

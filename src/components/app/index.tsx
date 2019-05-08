@@ -16,7 +16,7 @@ import DevTools from 'mobx-react-devtools';
 
 import { Routes } from './constants';
 import theme from './theme';
-import { RootStore } from '../../store/root_store';
+import { RootStore } from '../../store/root/root_store';
 import Navigation from './navigation';
 import Login_Signup from '../authentication/login_signup';
 import Landing from './landing';
@@ -55,7 +55,7 @@ export const Context = createContext(store);
 
 interface Props {}
 
-const App: FunctionComponent<Props> = ():JSX.Element => {
+export const App: FunctionComponent<Props> = ():JSX.Element => {
   return(
     <Context.Provider value={store}>
       <ThemeProvider theme={theme}>

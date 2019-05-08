@@ -38,7 +38,7 @@ const Login_Signup: FunctionComponent<Props> = observer( (props) => {
 
   const handleSocialLogin = async(event: BaseSyntheticEvent) => {
     try {
-      const response = await userStore.loginSocial();
+      const response = await userStore.loginSocial({ email, password });
     } catch(e) {
       // still need to implement error handling
     }
@@ -47,7 +47,7 @@ const Login_Signup: FunctionComponent<Props> = observer( (props) => {
   const handleSubmit = async(event: BaseSyntheticEvent) => {
     event.preventDefault();
     try {
-      const response = await userStore.loginUser();
+      const response = await userStore.loginUser({ email, password });
     } catch(e) {
       // still need to implement error handling
     }

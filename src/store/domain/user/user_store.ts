@@ -1,33 +1,24 @@
-import { action } from 'mobx';
-import {
-  UserApi,
-  User
-} from './';
-import { RootStore } from "../../root_store";
+import { RootStore } from '../../root/root_store';
+import { BaseApi } from '../../api/api_store';
 
-export class UserStore {
-  private userApi: UserApi;
+interface UserLoginInfo {
+  email: string;
+  password: string;
+}
+
+export class UserStore extends BaseApi {
   private rootStore: RootStore;
 
-  constructor(userApi: UserApi, rootStore: RootStore) {
+  constructor(rootStore: RootStore) {
+    super();
     this.rootStore = rootStore;
-    this.userApi = userApi;
   }
 
-  @action
-  public createUser = ({ id, email, userName }: { id: number; email: string; userName: string; }) => {
-    this.rootStore.uiStore.currentUser = new User({
-      id,
-      email,
-      userName
-    })
+  public loginUser = (body: UserLoginInfo): Promise<void> => {
+    return this.post('rubyapi/v1/login', body);
   };
 
-  public loginUser = (): Promise<void> => {
-    return this.userApi.postUserLogin()
-  };
-
-  public loginSocial = (): Promise<void> => {
-    return this.userApi.postSocialLogin();
+  public loginSocial = (body: UserLoginInfo): Promise<void> => {
+    return this.post('rubyapi/v1/social', body);
   };
 }
